@@ -21,6 +21,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    self.userName.delegate = self;
+    self.userPsw.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,12 +36,159 @@
     NSString* psw = self.userPsw.text;
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *parameters = @{@"username": @"fengka", @"psw": @"Ipad20000"};
-    [manager POST:@"http://10.148.252.24/rest-userLogin/" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSMutableDictionary* parameters=[[NSMutableDictionary alloc] init];
+    [parameters setObject: name forKey:@"username"];
+    [parameters setObject: psw forKey:@"psw"];
+    
+    [manager POST:@"http://10.148.227.222:8000/rest-userLogin/" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+
+        NSDictionary* dic = responseObject;
+        self.userToken = [dic objectForKey:@"token"];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+}
+
+- (IBAction)addFace:(id)sender {
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        NSArray *temp_MediaTypes = [UIImagePickerController availableMediaTypesForSourceType:picker.sourceType];
+        picker.mediaTypes = temp_MediaTypes;
+        picker.delegate = self;
+    }
+    [self presentViewController:picker animated:YES completion:nil];
+    
+
+    
+}
+
+- (IBAction)faceLogin:(id)sender {
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        NSArray *temp_MediaTypes = [UIImagePickerController availableMediaTypesForSourceType:picker.sourceType];
+        picker.mediaTypes = temp_MediaTypes;
+        picker.delegate = self;
+    }
+    [self presentViewController:picker animated:YES completion:nil];
+    
+
+}
+
+- (IBAction)listFaces:(id)sender {
+
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSString* strUrl = [NSString stringWithFormat:@"http://10.148.252.24/rest-listFaces/?token=%@", self.userToken];
+
+    [manager GET: strUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
     
 }
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    if ([mediaType isEqualToString:@"public.image"]){
+        UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+        
+        NSDate* now = [NSDate date];
+        NSDateFormatter *dateFormatter =[[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"YYYYmmddhhmmss"];
+        NSString *dateString = [dateFormatter stringFromDate:now];
+        [self saveImage:image withFileName:dateString ofType:@"jpg" inDirectory:documentsDirectory];
+        self.userPhoto.image = image;
+        self.photoName = [NSString stringWithFormat:@"%@.%@", dateString, @"jpg"];
+        
+        //http://10.148.252.24/rest-bindFace/?token=%@
+        
+//        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//        NSDictionary *parameters = @{@"Content-Type": @"multipart/form-data"};
+//        NSString* strUrl = [NSString stringWithFormat:@"http://10.148.227.222:8000/rest-bindFace/?token=%@", self.userToken];
+//        [manager POST: strUrl parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//            [formData appendPartWithFileData:UIImageJPEGRepresentation(self.userPhoto.image, 1.0) name:@"file" fileName:self.photoName mimeType:@"image/jpeg"];
+//            
+//        } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//            NSLog(@"Success: %@", responseObject);
+//        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//            NSLog(@"Error: %@", error);
+//        }];
+        
+
+        
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        NSDictionary *parameters = @{@"Content-Type": @"multipart/form-data"};
+        NSString* strUrl = @"http://10.148.227.222:8000/rest-faceLogin/";
+        [manager POST: strUrl parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+            [formData appendPartWithFileData:UIImageJPEGRepresentation(self.userPhoto.image, 1.0) name:@"file" fileName:self.photoName mimeType:@"image/jpeg"];
+            
+        } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"Success: %@", responseObject);
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Error: %@", error);
+        }];
+        
+        
+        
+//        PhotoItem* newItem = [[PhotoItem alloc] init];
+//        newItem.imageName = dateString;
+//        newItem.category = nil;
+//        [mImages addObject:newItem];
+    }
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+//    [self.collectionView reloadData];
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:
+(NSError *)error contextInfo:(void *)contextInfo;
+{
+    // Handle the end of the image write process
+    if (!error)
+        NSLog(@"Image written to photo album %@", contextInfo);
+    else
+        NSLog(@"Error writing to photo album: %@",
+              [error localizedDescription]);
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void) saveImage:(UIImage *)image withFileName:(NSString *)imageName ofType:(NSString *)extension inDirectory:(NSString *)directoryPath {
+    if ([[extension lowercaseString] isEqualToString:@"png"]) {
+        [UIImagePNGRepresentation(image) writeToFile:[directoryPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", imageName, @"png"]] options:NSAtomicWrite error:nil];
+    } else if ([[extension lowercaseString] isEqualToString:@"jpg"] || [[extension lowercaseString] isEqualToString:@"jpeg"]) {
+        [UIImageJPEGRepresentation(image, 1.0) writeToFile:[directoryPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", imageName, @"jpg"]] options:NSAtomicWrite error:nil];
+    } else {
+        //ALog(@"Image Save Failed\nExtension: (%@) is not recognized, use (PNG/JPG)", extension);
+        NSLog(@"exceptional file type.");
+    }
+}
+
+-(UIImage *) loadImage:(NSString *)fileName ofType:(NSString *)extension inDirectory:(NSString *)directoryPath {
+    UIImage * result = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@.%@", directoryPath, fileName, extension]];
+    
+    return result;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self.userName resignFirstResponder];
+    [self.userPsw resignFirstResponder];
+
+    return YES;
+}
+
 @end
