@@ -118,6 +118,7 @@
                         <outlet property="userName" destination="4S8-MW-xRH" id="jHY-XS-MU3"/>
                         <outlet property="userPhoto" destination="gE3-GM-rgo" id="v2S-nU-gdM"/>
                         <outlet property="userPsw" destination="a2A-pG-sjT" id="qxm-zx-d2q"/>
+                        <segue destination="4dI-AI-hms" kind="show" identifier="LoginSucceedSegue" id="7BO-kc-kAh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -127,7 +128,7 @@
         <!--My-->
         <scene sceneID="I7V-wa-ZhP">
             <objects>
-                <viewController id="rjs-cn-JJe" sceneMemberID="viewController">
+                <viewController id="rjs-cn-JJe" customClass="MyPageViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="79P-AZ-AOG"/>
                         <viewControllerLayoutGuide type="bottom" id="zao-SO-kjr"/>
@@ -135,28 +136,7 @@
                     <view key="view" contentMode="scaleToFill" id="YyE-2g-zRp">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dMX-Om-0Rk">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Add Photo">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="66" y="245" width="103" height="30"/>
-                                </variation>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="dMX-Om-0Rk"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="dMX-Om-0Rk"/>
-                            </mask>
-                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="My" id="7o4-ER-sNL"/>
                 </viewController>
@@ -167,7 +147,7 @@
         <!--Home-->
         <scene sceneID="kz9-tb-4fZ">
             <objects>
-                <viewController id="HPT-uO-EE6" sceneMemberID="viewController">
+                <viewController id="HPT-uO-EE6" customClass="HomePageViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="c5c-3J-aDx"/>
                         <viewControllerLayoutGuide type="bottom" id="oFz-81-wye"/>
@@ -185,7 +165,7 @@
                                     <rect key="frame" x="146" y="61" width="142" height="21"/>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cq2-L2-i7W">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cq2-L2-i7W">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -202,6 +182,9 @@
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="177" y="204" width="49" height="30"/>
                                 </variation>
+                                <connections>
+                                    <action selector="onLogout:" destination="HPT-uO-EE6" eventType="touchUpInside" id="GRr-pn-Hdc"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -221,15 +204,18 @@
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" id="F0J-tX-OiF"/>
+                    <connections>
+                        <outlet property="lblUserName" destination="cq2-L2-i7W" id="jwy-ww-oE5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nPY-3B-cEZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1857" y="-44"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Page View Controller-->
         <scene sceneID="bdT-ML-bXv">
             <objects>
-                <tabBarController id="4dI-AI-hms" sceneMemberID="viewController">
+                <tabBarController id="4dI-AI-hms" customClass="MainPageViewController" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="jnP-Nt-CmR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -243,7 +229,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oCP-YZ-d8u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="981" y="287"/>
+            <point key="canvasLocation" x="1047" y="287"/>
         </scene>
     </scenes>
 </document>

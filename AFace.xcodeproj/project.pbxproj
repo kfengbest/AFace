@@ -31,6 +31,10 @@
 		123AC9451A31A29100ECA96B /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 123AC93B1A31A29100ECA96B /* UIProgressView+AFNetworking.m */; };
 		123AC9461A31A29100ECA96B /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 123AC93D1A31A29100ECA96B /* UIRefreshControl+AFNetworking.m */; };
 		123AC9471A31A29100ECA96B /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 123AC93F1A31A29100ECA96B /* UIWebView+AFNetworking.m */; };
+		126D92B41A36F05B004CA181 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 126D92B31A36F05B004CA181 /* HomePageViewController.m */; };
+		126D92B71A36F090004CA181 /* MyPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 126D92B61A36F090004CA181 /* MyPageViewController.m */; };
+		126D92BD1A36F234004CA181 /* SharedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 126D92BC1A36F234004CA181 /* SharedData.m */; };
+		127477071A36EBAA00B18211 /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 127477061A36EBAA00B18211 /* MainPageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +97,14 @@
 		123AC93D1A31A29100ECA96B /* UIRefreshControl+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIRefreshControl+AFNetworking.m"; sourceTree = "<group>"; };
 		123AC93E1A31A29100ECA96B /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		123AC93F1A31A29100ECA96B /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
+		126D92B21A36F05B004CA181 /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
+		126D92B31A36F05B004CA181 /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
+		126D92B51A36F090004CA181 /* MyPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPageViewController.h; sourceTree = "<group>"; };
+		126D92B61A36F090004CA181 /* MyPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPageViewController.m; sourceTree = "<group>"; };
+		126D92BB1A36F234004CA181 /* SharedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedData.h; sourceTree = "<group>"; };
+		126D92BC1A36F234004CA181 /* SharedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedData.m; sourceTree = "<group>"; };
+		127477051A36EBAA00B18211 /* MainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageViewController.h; sourceTree = "<group>"; };
+		127477061A36EBAA00B18211 /* MainPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +157,14 @@
 				123AC8F81A319EC000ECA96B /* Images.xcassets */,
 				123AC8FA1A319EC000ECA96B /* LaunchScreen.xib */,
 				123AC8EB1A319EC000ECA96B /* Supporting Files */,
+				127477051A36EBAA00B18211 /* MainPageViewController.h */,
+				127477061A36EBAA00B18211 /* MainPageViewController.m */,
+				126D92B21A36F05B004CA181 /* HomePageViewController.h */,
+				126D92B31A36F05B004CA181 /* HomePageViewController.m */,
+				126D92B51A36F090004CA181 /* MyPageViewController.h */,
+				126D92B61A36F090004CA181 /* MyPageViewController.m */,
+				126D92BB1A36F234004CA181 /* SharedData.h */,
+				126D92BC1A36F234004CA181 /* SharedData.m */,
 			);
 			path = AFace;
 			sourceTree = "<group>";
@@ -333,7 +353,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				123AC9251A31A27F00ECA96B /* AFHTTPRequestOperation.m in Sources */,
+				126D92B71A36F090004CA181 /* MyPageViewController.m in Sources */,
 				123AC9441A31A29100ECA96B /* UIImageView+AFNetworking.m in Sources */,
+				126D92B41A36F05B004CA181 /* HomePageViewController.m in Sources */,
 				123AC8F41A319EC000ECA96B /* ViewController.m in Sources */,
 				123AC9261A31A27F00ECA96B /* AFHTTPRequestOperationManager.m in Sources */,
 				123AC9451A31A29100ECA96B /* UIProgressView+AFNetworking.m in Sources */,
@@ -343,8 +365,10 @@
 				123AC9431A31A29100ECA96B /* UIButton+AFNetworking.m in Sources */,
 				123AC9411A31A29100ECA96B /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				123AC9291A31A27F00ECA96B /* AFSecurityPolicy.m in Sources */,
+				127477071A36EBAA00B18211 /* MainPageViewController.m in Sources */,
 				123AC9461A31A29100ECA96B /* UIRefreshControl+AFNetworking.m in Sources */,
 				123AC9471A31A29100ECA96B /* UIWebView+AFNetworking.m in Sources */,
+				126D92BD1A36F234004CA181 /* SharedData.m in Sources */,
 				123AC9271A31A27F00ECA96B /* AFHTTPSessionManager.m in Sources */,
 				123AC9421A31A29100ECA96B /* UIAlertView+AFNetworking.m in Sources */,
 				123AC92B1A31A27F00ECA96B /* AFURLRequestSerialization.m in Sources */,
@@ -544,6 +568,7 @@
 				123AC90D1A319EC000ECA96B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		123AC90E1A319EC000ECA96B /* Build configuration list for PBXNativeTarget "AFaceTests" */ = {
 			isa = XCConfigurationList;
@@ -552,6 +577,7 @@
 				123AC9101A319EC000ECA96B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

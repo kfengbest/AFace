@@ -11,6 +11,8 @@
 #import "UIRefreshControl+AFNetworking.h"
 #import "UIAlertView+AFNetworking.h"
 #import "AFNetworking/AFNetworking.h"
+#import "MainPageViewController.h"
+#import "SharedData.h"
 
 @interface ViewController ()
 
@@ -40,11 +42,14 @@
     [parameters setObject: name forKey:@"username"];
     [parameters setObject: psw forKey:@"psw"];
     
-    [manager POST:@"http://10.148.227.222:8000/rest-userLogin/" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:@"http://10.148.252.24:80/rest-userLogin/" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
 
         NSDictionary* dic = responseObject;
         self.userToken = [dic objectForKey:@"token"];
+        [[SharedData theInstance] login:dic];
+       
+        [self performSegueWithIdentifier:@"LoginSucceedSegue" sender:self];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
@@ -62,8 +67,6 @@
     }
     [self presentViewController:picker animated:YES completion:nil];
     
-
-    
 }
 
 - (IBAction)faceLogin:(id)sender {
@@ -76,7 +79,6 @@
     }
     [self presentViewController:picker animated:YES completion:nil];
     
-
 }
 
 - (IBAction)listFaces:(id)sender {
@@ -107,9 +109,9 @@
         [dateFormatter setDateFormat:@"YYYYmmddhhmmss"];
         NSString *dateString = [dateFormatter stringFromDate:now];
         [self saveImage:image withFileName:dateString ofType:@"jpg" inDirectory:documentsDirectory];
-        self.userPhoto.image = image;
         self.photoName = [NSString stringWithFormat:@"%@.%@", dateString, @"jpg"];
         
+
         //http://10.148.252.24/rest-bindFace/?token=%@
         
 //        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -124,13 +126,15 @@
 //            NSLog(@"Error: %@", error);
 //        }];
         
-
         
+        UIImage *newImage = [self imageWithImage:image scaledToSize:CGSizeMake(320, 480)];
+        self.userPhoto.image = image;
+
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         NSDictionary *parameters = @{@"Content-Type": @"multipart/form-data"};
         NSString* strUrl = @"http://10.148.227.222:8000/rest-faceLogin/";
         [manager POST: strUrl parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-            [formData appendPartWithFileData:UIImageJPEGRepresentation(self.userPhoto.image, 1.0) name:@"file" fileName:self.photoName mimeType:@"image/jpeg"];
+            [formData appendPartWithFileData:UIImageJPEGRepresentation(newImage, 1.0) name:@"file" fileName:self.photoName mimeType:@"image/jpeg"];
             
         } success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"Success: %@", responseObject);
@@ -190,5 +194,17 @@
 
     return YES;
 }
+
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    //UIGraphicsBeginImageContext(newSize);
+    // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
+    // Pass 1.0 to force exact pixel size.
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
 
 @end
