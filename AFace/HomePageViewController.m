@@ -39,5 +39,7 @@
 - (IBAction)onLogout:(id)sender {
     
     [[SharedData theInstance] logout];
+    [self performSegueWithIdentifier:@"LogoutSegue" sender:self];
+
 }
 @end
