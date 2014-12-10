@@ -89,12 +89,15 @@
                                     <action selector="listFaces:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EII-3D-PUg"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gE3-GM-rgo">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gom-Zn-KVO">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                    <rect key="frame" x="65" y="313" width="238" height="21"/>
                                 </variation>
-                            </imageView>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -102,7 +105,7 @@
                                 <exclude reference="2pW-dQ-qfm"/>
                                 <exclude reference="ZZp-X0-rY4"/>
                                 <exclude reference="fPo-07-91g"/>
-                                <exclude reference="gE3-GM-rgo"/>
+                                <exclude reference="gom-Zn-KVO"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -110,13 +113,13 @@
                                 <include reference="2pW-dQ-qfm"/>
                                 <include reference="ZZp-X0-rY4"/>
                                 <include reference="fPo-07-91g"/>
-                                <include reference="gE3-GM-rgo"/>
+                                <include reference="gom-Zn-KVO"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="erroMsg" destination="gom-Zn-KVO" id="PP0-M9-xfn"/>
                         <outlet property="userName" destination="4S8-MW-xRH" id="jHY-XS-MU3"/>
-                        <outlet property="userPhoto" destination="gE3-GM-rgo" id="v2S-nU-gdM"/>
                         <outlet property="userPsw" destination="a2A-pG-sjT" id="qxm-zx-d2q"/>
                         <segue destination="4dI-AI-hms" kind="show" identifier="LoginSucceedSegue" id="7BO-kc-kAh"/>
                     </connections>
@@ -136,7 +139,45 @@
                     <view key="view" contentMode="scaleToFill" id="YyE-2g-zRp">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L0j-R0-MKC">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Add">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="206" y="311" width="30" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="addFace:" destination="rjs-cn-JJe" eventType="touchUpInside" id="cz7-Sa-qtm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cUg-zD-N79">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="List">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="206" y="357" width="30" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="listFaces:" destination="rjs-cn-JJe" eventType="touchUpInside" id="2Zh-RA-Kba"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="L0j-R0-MKC"/>
+                                <exclude reference="cUg-zD-N79"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="L0j-R0-MKC"/>
+                                <include reference="cUg-zD-N79"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="My" id="7o4-ER-sNL"/>
                 </viewController>

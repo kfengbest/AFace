@@ -42,14 +42,19 @@
     [parameters setObject: name forKey:@"username"];
     [parameters setObject: psw forKey:@"psw"];
     
-    [manager POST:@"http://10.148.252.24:80/rest-userLogin/" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:@"http://10.148.252.24/rest-userLogin/" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
 
         NSDictionary* dic = responseObject;
-        self.userToken = [dic objectForKey:@"token"];
-        [[SharedData theInstance] login:dic];
-       
-        [self performSegueWithIdentifier:@"LoginSucceedSegue" sender:self];
+        BOOL status = (BOOL)[dic objectForKey:@"status"];
+        if (status != nil && status == FALSE) {
+            self.erroMsg.text = @"Login failed. Please check your user name and password";
+        }else{
+            self.userToken = [dic objectForKey:@"token"];
+            [[SharedData theInstance] login:dic];
+            [self performSegueWithIdentifier:@"LoginSucceedSegue" sender:self];
+        }
+
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
@@ -128,7 +133,6 @@
         
         
         UIImage *newImage = [self imageWithImage:image scaledToSize:CGSizeMake(320, 480)];
-        self.userPhoto.image = image;
 
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         NSDictionary *parameters = @{@"Content-Type": @"multipart/form-data"};

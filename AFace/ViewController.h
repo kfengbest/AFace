@@ -14,7 +14,7 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *userName;
 @property (strong, nonatomic) IBOutlet UITextField *userPsw;
-@property (strong, nonatomic) IBOutlet UIImageView *userPhoto;
+@property (strong, nonatomic) IBOutlet UILabel *   erroMsg;
 
 @property (strong, nonatomic) NSString *userToken;
 @property (strong, nonatomic) NSString *photoName;
