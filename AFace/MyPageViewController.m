@@ -12,6 +12,7 @@
 #import "SharedData.h"
 #import "PhotoItem.h"
 #import "RecordItemCell.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface MyPageViewController ()
 {
@@ -28,6 +29,7 @@
     
     mImages = [[NSMutableArray alloc] init];
 
+    [self listFaces:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,6 +69,16 @@
     
     [manager GET: strUrl parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
+        
+        NSArray* values =responseObject;
+        for (NSDictionary* o in values) {
+            NSString* name = [o objectForKey:@"img_url"];
+            NSLog(@"%@", name);
+            [mImages addObject:name];
+        }
+        
+        [self.collectionView reloadData];
+
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
@@ -89,10 +101,7 @@
         [dateFormatter setDateFormat:@"YYYYmmddhhmmss"];
         NSString *dateString = [dateFormatter stringFromDate:now];
          NSString * imageName = [NSString stringWithFormat:@"%@.%@", dateString, @"jpg"];
-        [self saveImage:image withFileName:dateString ofType:@"jpg" inDirectory:documentsDirectory];
-        
- //       UIImage *newImage = [self imageWithImage:image scaledToSize:CGSizeMake(320, 480)];
-        
+      //  [self saveImage:image withFileName:dateString ofType:@"jpg" inDirectory:documentsDirectory];
         
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         NSDictionary *parameters = @{@"Content-Type": @"multipart/form-data"};
@@ -103,18 +112,14 @@
     
                 } success:^(AFHTTPRequestOperation *operation, id responseObject) {
                     NSLog(@"Success: %@", responseObject);
+                    NSDictionary* dic = responseObject;
+                    NSString* imageUrl = [dic objectForKey:@"url"];
+                    
+                    [self.collectionView reloadData];
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                     NSLog(@"Error: %@", error);
                 }];
-        
 
-
-        
-        
-        //        PhotoItem* newItem = [[PhotoItem alloc] init];
-        //        newItem.imageName = dateString;
-        //        newItem.category = nil;
-        //        [mImages addObject:newItem];
     }
     
     [picker dismissViewControllerAnimated:YES completion:nil];
@@ -179,23 +184,11 @@
                                  dequeueReusableCellWithReuseIdentifier:@"RecordItemCell"
                                  forIndexPath:indexPath];
         
-        PhotoItem* item = [mImages objectAtIndex:indexPath.row - 1];
-        NSString* imagename = item.imageName;
-        NSLog(@"index: %d, %@", indexPath.row, imagename);
-        
-        NSString * documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-        
-        UIImage * imageFromWeb = [self loadImage:imagename ofType:@"jpg" inDirectory:documentsDirectoryPath];
-        [cell1.imageView setBackgroundImage:imageFromWeb forState:UIControlStateNormal];
-        [cell1.imageView setBackgroundImage:imageFromWeb forState:UIControlStateSelected];
-        cell1.categoryButton.tag = indexPath.row;
-        
-//        if (item.category != nil) {
-//            NSString* typeName = item.category.name;
-//            [cell1.categoryButton setTitle:typeName forState:UIControlStateNormal];
-//            [cell1.categoryButton setTitle:typeName forState:UIControlStateSelected];
-//        }
-        
+        NSString* imagename = [mImages objectAtIndex:indexPath.row - 1];
+        NSLog(@"cell: %@", imagename);
+        NSURL* imageUrl = [NSURL URLWithString: imagename];
+        [cell1.imageView setImageWithURL: imageUrl placeholderImage:[UIImage imageNamed:@"LoadingPlaceHolder.png"]];
+
         return cell1;
         
     }

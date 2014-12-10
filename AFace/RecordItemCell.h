@@ -13,9 +13,7 @@
 @end
 
 @interface RecordItemCell : UICollectionViewCell
-
-@property (strong, nonatomic) IBOutlet UIButton *imageView;
-@property (strong, nonatomic) IBOutlet UIButton *categoryButton;
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
 

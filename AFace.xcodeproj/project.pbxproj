@@ -38,6 +38,7 @@
 		126D92C31A37E09B004CA181 /* RecordItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 126D92C11A37E09B004CA181 /* RecordItemCell.m */; };
 		126D92C61A37E31E004CA181 /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 126D92C41A37E31E004CA181 /* add.png */; };
 		126D92C71A37E31E004CA181 /* add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 126D92C51A37E31E004CA181 /* add@2x.png */; };
+		126D92C91A37EFDA004CA181 /* LoadingPlaceHolder.png in Resources */ = {isa = PBXBuildFile; fileRef = 126D92C81A37EFDA004CA181 /* LoadingPlaceHolder.png */; };
 		127477071A36EBAA00B18211 /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 127477061A36EBAA00B18211 /* MainPageViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +114,7 @@
 		126D92C11A37E09B004CA181 /* RecordItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordItemCell.m; sourceTree = "<group>"; };
 		126D92C41A37E31E004CA181 /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
 		126D92C51A37E31E004CA181 /* add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add@2x.png"; sourceTree = "<group>"; };
+		126D92C81A37EFDA004CA181 /* LoadingPlaceHolder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoadingPlaceHolder.png; sourceTree = "<group>"; };
 		127477051A36EBAA00B18211 /* MainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageViewController.h; sourceTree = "<group>"; };
 		127477061A36EBAA00B18211 /* MainPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -186,6 +188,7 @@
 		123AC8EB1A319EC000ECA96B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				126D92C81A37EFDA004CA181 /* LoadingPlaceHolder.png */,
 				126D92C41A37E31E004CA181 /* add.png */,
 				126D92C51A37E31E004CA181 /* add@2x.png */,
 				123AC8EC1A319EC000ECA96B /* Info.plist */,
@@ -352,6 +355,7 @@
 				126D92C71A37E31E004CA181 /* add@2x.png in Resources */,
 				123AC8FC1A319EC000ECA96B /* LaunchScreen.xib in Resources */,
 				123AC8F91A319EC000ECA96B /* Images.xcassets in Resources */,
+				126D92C91A37EFDA004CA181 /* LoadingPlaceHolder.png in Resources */,
 				126D92C61A37E31E004CA181 /* add.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
