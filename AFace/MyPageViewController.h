@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyPageViewController : UIViewController
+@interface MyPageViewController : UIViewController<UICollectionViewDelegate,
+                                                    UICollectionViewDataSource,
+                                                    UINavigationControllerDelegate,
+                                                    UIImagePickerControllerDelegate>
+
+@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end

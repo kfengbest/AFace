@@ -34,6 +34,10 @@
 		126D92B41A36F05B004CA181 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 126D92B31A36F05B004CA181 /* HomePageViewController.m */; };
 		126D92B71A36F090004CA181 /* MyPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 126D92B61A36F090004CA181 /* MyPageViewController.m */; };
 		126D92BD1A36F234004CA181 /* SharedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 126D92BC1A36F234004CA181 /* SharedData.m */; };
+		126D92C21A37E09B004CA181 /* PhotoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 126D92BF1A37E09B004CA181 /* PhotoItem.m */; };
+		126D92C31A37E09B004CA181 /* RecordItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 126D92C11A37E09B004CA181 /* RecordItemCell.m */; };
+		126D92C61A37E31E004CA181 /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 126D92C41A37E31E004CA181 /* add.png */; };
+		126D92C71A37E31E004CA181 /* add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 126D92C51A37E31E004CA181 /* add@2x.png */; };
 		127477071A36EBAA00B18211 /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 127477061A36EBAA00B18211 /* MainPageViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +107,12 @@
 		126D92B61A36F090004CA181 /* MyPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPageViewController.m; sourceTree = "<group>"; };
 		126D92BB1A36F234004CA181 /* SharedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedData.h; sourceTree = "<group>"; };
 		126D92BC1A36F234004CA181 /* SharedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedData.m; sourceTree = "<group>"; };
+		126D92BE1A37E09B004CA181 /* PhotoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoItem.h; sourceTree = "<group>"; };
+		126D92BF1A37E09B004CA181 /* PhotoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoItem.m; sourceTree = "<group>"; };
+		126D92C01A37E09B004CA181 /* RecordItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordItemCell.h; sourceTree = "<group>"; };
+		126D92C11A37E09B004CA181 /* RecordItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordItemCell.m; sourceTree = "<group>"; };
+		126D92C41A37E31E004CA181 /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
+		126D92C51A37E31E004CA181 /* add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add@2x.png"; sourceTree = "<group>"; };
 		127477051A36EBAA00B18211 /* MainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageViewController.h; sourceTree = "<group>"; };
 		127477061A36EBAA00B18211 /* MainPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,6 +169,10 @@
 				123AC8EB1A319EC000ECA96B /* Supporting Files */,
 				127477051A36EBAA00B18211 /* MainPageViewController.h */,
 				127477061A36EBAA00B18211 /* MainPageViewController.m */,
+				126D92BE1A37E09B004CA181 /* PhotoItem.h */,
+				126D92BF1A37E09B004CA181 /* PhotoItem.m */,
+				126D92C01A37E09B004CA181 /* RecordItemCell.h */,
+				126D92C11A37E09B004CA181 /* RecordItemCell.m */,
 				126D92B21A36F05B004CA181 /* HomePageViewController.h */,
 				126D92B31A36F05B004CA181 /* HomePageViewController.m */,
 				126D92B51A36F090004CA181 /* MyPageViewController.h */,
@@ -172,6 +186,8 @@
 		123AC8EB1A319EC000ECA96B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				126D92C41A37E31E004CA181 /* add.png */,
+				126D92C51A37E31E004CA181 /* add@2x.png */,
 				123AC8EC1A319EC000ECA96B /* Info.plist */,
 				123AC8ED1A319EC000ECA96B /* main.m */,
 			);
@@ -333,8 +349,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				123AC8F71A319EC000ECA96B /* Main.storyboard in Resources */,
+				126D92C71A37E31E004CA181 /* add@2x.png in Resources */,
 				123AC8FC1A319EC000ECA96B /* LaunchScreen.xib in Resources */,
 				123AC8F91A319EC000ECA96B /* Images.xcassets in Resources */,
+				126D92C61A37E31E004CA181 /* add.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,8 +389,10 @@
 				126D92BD1A36F234004CA181 /* SharedData.m in Sources */,
 				123AC9271A31A27F00ECA96B /* AFHTTPSessionManager.m in Sources */,
 				123AC9421A31A29100ECA96B /* UIAlertView+AFNetworking.m in Sources */,
+				126D92C31A37E09B004CA181 /* RecordItemCell.m in Sources */,
 				123AC92B1A31A27F00ECA96B /* AFURLRequestSerialization.m in Sources */,
 				123AC9401A31A29100ECA96B /* AFNetworkActivityIndicatorManager.m in Sources */,
+				126D92C21A37E09B004CA181 /* PhotoItem.m in Sources */,
 				123AC92D1A31A27F00ECA96B /* AFURLSessionManager.m in Sources */,
 				123AC8F11A319EC000ECA96B /* AppDelegate.m in Sources */,
 				123AC8EE1A319EC000ECA96B /* main.m in Sources */,

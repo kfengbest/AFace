@@ -10,8 +10,13 @@
 
 #import "AFNetworking/AFNetworking.h"
 #import "SharedData.h"
+#import "PhotoItem.h"
+#import "RecordItemCell.h"
 
 @interface MyPageViewController ()
+{
+    NSMutableArray* mImages;
+}
 
 @end
 
@@ -20,6 +25,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    mImages = [[NSMutableArray alloc] init];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -145,5 +153,55 @@
     
     return result;
 }
+
+
+
+-(NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView
+{
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return [mImages count] + 1;
+    
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        AddPhotoCell* cell0 =  [collectionView
+                                dequeueReusableCellWithReuseIdentifier:@"AddPhotoCell"
+                                forIndexPath:indexPath];
+        return cell0;
+    }else{
+        RecordItemCell *cell1 = [collectionView
+                                 dequeueReusableCellWithReuseIdentifier:@"RecordItemCell"
+                                 forIndexPath:indexPath];
+        
+        PhotoItem* item = [mImages objectAtIndex:indexPath.row - 1];
+        NSString* imagename = item.imageName;
+        NSLog(@"index: %d, %@", indexPath.row, imagename);
+        
+        NSString * documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        
+        UIImage * imageFromWeb = [self loadImage:imagename ofType:@"jpg" inDirectory:documentsDirectoryPath];
+        [cell1.imageView setBackgroundImage:imageFromWeb forState:UIControlStateNormal];
+        [cell1.imageView setBackgroundImage:imageFromWeb forState:UIControlStateSelected];
+        cell1.categoryButton.tag = indexPath.row;
+        
+//        if (item.category != nil) {
+//            NSString* typeName = item.category.name;
+//            [cell1.categoryButton setTitle:typeName forState:UIControlStateNormal];
+//            [cell1.categoryButton setTitle:typeName forState:UIControlStateSelected];
+//        }
+        
+        return cell1;
+        
+    }
+    
+    return nil;
+}
+
 
 @end
