@@ -116,47 +116,36 @@
         [self saveImage:image withFileName:dateString ofType:@"jpg" inDirectory:documentsDirectory];
         self.photoName = [NSString stringWithFormat:@"%@.%@", dateString, @"jpg"];
         
-
-        //http://10.148.252.24/rest-bindFace/?token=%@
-        
-//        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//        NSDictionary *parameters = @{@"Content-Type": @"multipart/form-data"};
-//        NSString* strUrl = [NSString stringWithFormat:@"http://10.148.227.222:8000/rest-bindFace/?token=%@", self.userToken];
-//        [manager POST: strUrl parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-//            [formData appendPartWithFileData:UIImageJPEGRepresentation(self.userPhoto.image, 1.0) name:@"file" fileName:self.photoName mimeType:@"image/jpeg"];
-//            
-//        } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//            NSLog(@"Success: %@", responseObject);
-//        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//            NSLog(@"Error: %@", error);
-//        }];
-        
-        
         UIImage *newImage = [self imageWithImage:image scaledToSize:CGSizeMake(320, 480)];
 
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         NSDictionary *parameters = @{@"Content-Type": @"multipart/form-data"};
-        NSString* strUrl = @"http://10.148.227.222:8000/rest-faceLogin/";
+        NSString* strUrl = @"http://10.148.252.24/rest-faceLogin/";
         [manager POST: strUrl parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
             [formData appendPartWithFileData:UIImageJPEGRepresentation(newImage, 1.0) name:@"file" fileName:self.photoName mimeType:@"image/jpeg"];
             
         } success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"Success: %@", responseObject);
+            
+            NSDictionary* dic = responseObject;
+            BOOL status = (BOOL)[dic objectForKey:@"status"];
+            if (status != nil && status == FALSE) {
+                self.erroMsg.text = @"Login failed. Please check your user name and password";
+            }else{
+                self.userToken = [dic objectForKey:@"token"];
+                [[SharedData theInstance] login:dic];
+                [self performSegueWithIdentifier:@"LoginSucceedSegue" sender:self];
+            }
+            
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Error: %@", error);
         }];
         
-        
-        
-//        PhotoItem* newItem = [[PhotoItem alloc] init];
-//        newItem.imageName = dateString;
-//        newItem.category = nil;
-//        [mImages addObject:newItem];
+
     }
     
     [picker dismissViewControllerAnimated:YES completion:nil];
     
-//    [self.collectionView reloadData];
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:
