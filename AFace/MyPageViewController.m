@@ -114,7 +114,7 @@
                     NSLog(@"Success: %@", responseObject);
                     NSDictionary* dic = responseObject;
                     NSString* imageUrl = [dic objectForKey:@"url"];
-                    
+                    [mImages addObject:imageUrl];
                     [self.collectionView reloadData];
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                     NSLog(@"Error: %@", error);
@@ -174,7 +174,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
+    if (indexPath.row == [mImages count]) {
         AddPhotoCell* cell0 =  [collectionView
                                 dequeueReusableCellWithReuseIdentifier:@"AddPhotoCell"
                                 forIndexPath:indexPath];
@@ -184,7 +184,7 @@
                                  dequeueReusableCellWithReuseIdentifier:@"RecordItemCell"
                                  forIndexPath:indexPath];
         
-        NSString* imagename = [mImages objectAtIndex:indexPath.row - 1];
+        NSString* imagename = [mImages objectAtIndex:indexPath.row];
         NSLog(@"cell: %@", imagename);
         NSURL* imageUrl = [NSURL URLWithString: imagename];
         [cell1.imageView setImageWithURL: imageUrl placeholderImage:[UIImage imageNamed:@"LoadingPlaceHolder.png"]];

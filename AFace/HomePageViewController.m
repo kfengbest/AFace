@@ -26,6 +26,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    NSLog(@"HomePageViewController:: viewDidAppear");
+    self.lblUserName.text = [[SharedData theInstance] getUserFullName];
+}
 /*
 #pragma mark - Navigation
 
