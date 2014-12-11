@@ -118,6 +118,8 @@
         
         UIImage *newImage = [self imageWithImage:image scaledToSize:CGSizeMake(320, 480)];
 
+        self.erroMsg.text = @"Searching your face for login...";
+        
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         NSDictionary *parameters = @{@"Content-Type": @"multipart/form-data"};
         NSString* strUrl = @"http://10.148.252.24/rest-faceLogin/";
@@ -130,8 +132,11 @@
             NSDictionary* dic = responseObject;
             BOOL status = (BOOL)[dic objectForKey:@"status"];
             if (status != nil && status == FALSE) {
-                self.erroMsg.text = @"Login failed. Please check your user name and password";
+                self.erroMsg.text = @"Login failed. Please take a photo again.";
+                
             }else{
+                self.erroMsg.text = @"";
+
                 self.userToken = [dic objectForKey:@"token"];
                 [[SharedData theInstance] login:dic];
                 [self performSegueWithIdentifier:@"LoginSucceedSegue" sender:self];

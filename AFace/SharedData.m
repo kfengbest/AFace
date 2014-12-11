@@ -45,7 +45,7 @@
 {
     self.loginData = loginData;
     self.token = [self.loginData objectForKey:@"token"];
-    self.fullName = [self.loginData objectForKey:@"fullName"];
+    self.fullName = [self.loginData objectForKey:@"name"];
     
 }
 
