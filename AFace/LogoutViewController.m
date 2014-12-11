@@ -1,26 +1,23 @@
 //
-//  HomePageViewController.m
+//  LogoutViewController.m
 //  AFace
 //
-//  Created by Kaven Feng on 12/9/14.
+//  Created by Kaven Feng on 12/11/14.
 //  Copyright (c) 2014 Kaven Feng. All rights reserved.
 //
 
-#import "HomePageViewController.h"
+#import "LogoutViewController.h"
 #import "SharedData.h"
 
-@interface HomePageViewController ()
+@interface LogoutViewController ()
 
 @end
 
-@implementation HomePageViewController
+@implementation LogoutViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.lblUserName.text = [[SharedData theInstance] getUserFullName];
-    self.view.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"home@2x.jpg"]];
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -28,11 +25,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    NSLog(@"HomePageViewController:: viewDidAppear");
-    self.lblUserName.text = [[SharedData theInstance] getUserFullName];
-}
 /*
 #pragma mark - Navigation
 
@@ -43,5 +35,11 @@
 }
 */
 
+- (IBAction)onLogout:(id)sender {
+    
+    [[SharedData theInstance] logout];
+    [self performSegueWithIdentifier:@"LogoutSegue" sender:self];
+    
+}
 
 @end

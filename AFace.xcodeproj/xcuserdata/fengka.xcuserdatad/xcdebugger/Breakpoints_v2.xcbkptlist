@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AFace/ViewController.m"
-            timestampString = "439976719.268777"
+            timestampString = "439984220.083474"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "-onLogin:"
             landmarkType = "5">
          </BreakpointContent>

@@ -24,6 +24,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
+    self.view.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"login_background@2x.jpg"]];
+
     self.userName.delegate = self;
     self.userPsw.delegate = self;
 }
