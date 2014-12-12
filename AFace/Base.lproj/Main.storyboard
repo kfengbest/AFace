@@ -140,27 +140,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="8zh-6i-hSq">
-                                <rect key="frame" x="-10" y="-10" width="20" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="rYV-Um-cE5"/>
-                                    <constraint firstAttribute="width" constant="100" id="uak-xU-Tru">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="80"/>
-                                    </constraint>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="rYV-Um-cE5"/>
-                                        <exclude reference="uak-xU-Tru"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="rYV-Um-cE5"/>
-                                        <include reference="uak-xU-Tru"/>
-                                    </mask>
-                                </variation>
-                            </activityIndicatorView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="g7t-W0-uuB">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -170,6 +149,27 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
+                                <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="8zh-6i-hSq">
+                                    <rect key="frame" x="-10" y="-10" width="20" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="80" id="rYV-Um-cE5"/>
+                                        <constraint firstAttribute="width" constant="100" id="uak-xU-Tru">
+                                            <variation key="heightClass=regular-widthClass=compact" constant="80"/>
+                                        </constraint>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="uak-xU-Tru"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="heightClass=regular-widthClass=compact">
+                                        <mask key="constraints">
+                                            <include reference="rYV-Um-cE5"/>
+                                            <include reference="uak-xU-Tru"/>
+                                        </mask>
+                                    </variation>
+                                </activityIndicatorView>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AddPhotoCell" id="GTo-ue-oSx" customClass="AddPhotoCell">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -272,16 +272,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="8zh-6i-hSq" secondAttribute="centerY" id="8rt-OE-Hat"/>
                             <constraint firstItem="g7t-W0-uuB" firstAttribute="top" secondItem="YyE-2g-zRp" secondAttribute="top" id="HLi-WA-ExQ"/>
                             <constraint firstItem="g7t-W0-uuB" firstAttribute="leading" secondItem="YyE-2g-zRp" secondAttribute="leading" id="R6s-Eu-ZSr"/>
-                            <constraint firstAttribute="centerX" secondItem="8zh-6i-hSq" secondAttribute="centerX" id="jDB-5r-CRS"/>
                             <constraint firstAttribute="centerX" secondItem="g7t-W0-uuB" secondAttribute="centerX" id="oyY-sI-A6f"/>
                             <constraint firstAttribute="centerY" secondItem="g7t-W0-uuB" secondAttribute="centerY" id="wMi-LF-suk"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="8zh-6i-hSq"/>
                                 <exclude reference="g7t-W0-uuB"/>
                             </mask>
                             <mask key="constraints">
@@ -289,13 +286,10 @@
                                 <exclude reference="R6s-Eu-ZSr"/>
                                 <exclude reference="oyY-sI-A6f"/>
                                 <exclude reference="wMi-LF-suk"/>
-                                <exclude reference="8rt-OE-Hat"/>
-                                <exclude reference="jDB-5r-CRS"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
-                                <include reference="8zh-6i-hSq"/>
                                 <include reference="g7t-W0-uuB"/>
                             </mask>
                             <mask key="constraints">
@@ -303,8 +297,6 @@
                                 <include reference="R6s-Eu-ZSr"/>
                                 <include reference="oyY-sI-A6f"/>
                                 <include reference="wMi-LF-suk"/>
-                                <include reference="8rt-OE-Hat"/>
-                                <include reference="jDB-5r-CRS"/>
                             </mask>
                         </variation>
                     </view>
