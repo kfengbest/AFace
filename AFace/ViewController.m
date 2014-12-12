@@ -49,6 +49,9 @@
     NSString* name = self.userName.text;
     NSString* psw = self.userPsw.text;
     
+    [self.userName resignFirstResponder];
+    [self.userPsw resignFirstResponder];
+    
     [self.indicator startAnimating];
 
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -62,8 +65,8 @@
         [self.indicator stopAnimating];
         
         NSDictionary* dic = responseObject;
-        BOOL status = (BOOL)[dic objectForKey:@"status"];
-        if (status != nil && status == FALSE) {
+        BOOL status = [[dic objectForKey:@"status"] boolValue];
+        if (status == 0) {
             self.erroMsg.text = @"Login failed. Please check your user name and password";
         }else{
             self.userToken = [dic objectForKey:@"token"];
@@ -135,9 +138,9 @@
         [self saveImage:image withFileName:dateString ofType:@"jpg" inDirectory:documentsDirectory];
         self.photoName = [NSString stringWithFormat:@"%@.%@", dateString, @"jpg"];
         
-        UIImage *newImage = [self imageWithImage:image scaledToSize:CGSizeMake(320, 480)];
+        UIImage *newImage = [self scaleImage:image scaledToSize:0.6];
 
-        self.erroMsg.text = @"Searching your face for login...";
+        self.erroMsg.text = @"Searching your face...";
         [self.indicator startAnimating];
 
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -151,20 +154,28 @@
             [self.indicator stopAnimating];
 
             NSDictionary* dic = responseObject;
-            BOOL status = (BOOL)[dic objectForKey:@"status"];
-            if (status != nil && status == FALSE) {
-                self.erroMsg.text = @"Login failed. Please take a photo again.";
+            BOOL status = [[dic objectForKey:@"status"] boolValue];
+            if (status == 0) {
+                self.erroMsg.text = @"Not found your face. Take photo again.";
                 
             }else{
-                self.erroMsg.text = @"";
+                float fConfidence = [[dic objectForKey:@"confidence"] floatValue];
+                if (fConfidence > 20.0) {
+                    self.erroMsg.text = @"";
+                    
+                    self.userToken = [dic objectForKey:@"token"];
+                    [[SharedData theInstance] login:dic];
+                    [self performSegueWithIdentifier:@"LoginSucceedSegue" sender:self];
+                }else{
+                    self.erroMsg.text = @"Not found your face. Take photo again.";
+                }
 
-                self.userToken = [dic objectForKey:@"token"];
-                [[SharedData theInstance] login:dic];
-                [self performSegueWithIdentifier:@"LoginSucceedSegue" sender:self];
             }
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Error: %@", error);
+            self.erroMsg.text = @"Network access error.";
+
             [self.indicator stopAnimating];
 
         }];
@@ -216,10 +227,15 @@
     return YES;
 }
 
-- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+- (UIImage *)scaleImage:(UIImage *)image scaledToSize:(float)scaleFactor {
     //UIGraphicsBeginImageContext(newSize);
     // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
     // Pass 1.0 to force exact pixel size.
+    
+    float w =image.size.width;
+    float h = image.size.height;
+    CGSize newSize = CGSizeMake( w * scaleFactor, h * scaleFactor);
+    
     UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
     [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
