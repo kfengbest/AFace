@@ -18,6 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="T1Z-hX-74L">
+                                <rect key="frame" x="-10" y="-10" width="20" height="20"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="150" y="401" width="20" height="20"/>
+                                </variation>
+                            </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LPj-3L-nw9">
                                 <rect key="frame" x="16" y="176" width="91" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -70,7 +76,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="35" y="409" width="260" height="27"/>
+                                    <rect key="frame" x="30" y="469" width="260" height="27"/>
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2pW-dQ-qfm">
@@ -92,6 +98,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
+                                <exclude reference="T1Z-hX-74L"/>
                                 <exclude reference="yv1-To-UrW"/>
                                 <exclude reference="2pW-dQ-qfm"/>
                             </mask>
@@ -103,6 +110,7 @@
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
+                                <include reference="T1Z-hX-74L"/>
                                 <include reference="yv1-To-UrW"/>
                             </mask>
                         </variation>
@@ -110,6 +118,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="erroMsg" destination="yv1-To-UrW" id="t6W-Zf-H4B"/>
+                        <outlet property="indicator" destination="T1Z-hX-74L" id="Q19-b2-htZ"/>
                         <outlet property="userName" destination="4S8-MW-xRH" id="jHY-XS-MU3"/>
                         <outlet property="userPsw" destination="a2A-pG-sjT" id="qxm-zx-d2q"/>
                         <segue destination="4dI-AI-hms" kind="show" identifier="LoginSucceedSegue" id="7BO-kc-kAh"/>
@@ -131,6 +140,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="8zh-6i-hSq">
+                                <rect key="frame" x="-10" y="-10" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="rYV-Um-cE5"/>
+                                    <constraint firstAttribute="width" constant="100" id="uak-xU-Tru">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="80"/>
+                                    </constraint>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="rYV-Um-cE5"/>
+                                        <exclude reference="uak-xU-Tru"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="rYV-Um-cE5"/>
+                                        <include reference="uak-xU-Tru"/>
+                                    </mask>
+                                </variation>
+                            </activityIndicatorView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="g7t-W0-uuB">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -237,13 +267,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerY" secondItem="8zh-6i-hSq" secondAttribute="centerY" id="8rt-OE-Hat"/>
                             <constraint firstItem="g7t-W0-uuB" firstAttribute="top" secondItem="YyE-2g-zRp" secondAttribute="top" id="HLi-WA-ExQ"/>
                             <constraint firstItem="g7t-W0-uuB" firstAttribute="leading" secondItem="YyE-2g-zRp" secondAttribute="leading" id="R6s-Eu-ZSr"/>
+                            <constraint firstAttribute="centerX" secondItem="8zh-6i-hSq" secondAttribute="centerX" id="jDB-5r-CRS"/>
                             <constraint firstAttribute="centerX" secondItem="g7t-W0-uuB" secondAttribute="centerX" id="oyY-sI-A6f"/>
                             <constraint firstAttribute="centerY" secondItem="g7t-W0-uuB" secondAttribute="centerY" id="wMi-LF-suk"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
+                                <exclude reference="8zh-6i-hSq"/>
                                 <exclude reference="g7t-W0-uuB"/>
                             </mask>
                             <mask key="constraints">
@@ -251,10 +284,13 @@
                                 <exclude reference="R6s-Eu-ZSr"/>
                                 <exclude reference="oyY-sI-A6f"/>
                                 <exclude reference="wMi-LF-suk"/>
+                                <exclude reference="8rt-OE-Hat"/>
+                                <exclude reference="jDB-5r-CRS"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
+                                <include reference="8zh-6i-hSq"/>
                                 <include reference="g7t-W0-uuB"/>
                             </mask>
                             <mask key="constraints">
@@ -262,6 +298,8 @@
                                 <include reference="R6s-Eu-ZSr"/>
                                 <include reference="oyY-sI-A6f"/>
                                 <include reference="wMi-LF-suk"/>
+                                <include reference="8rt-OE-Hat"/>
+                                <include reference="jDB-5r-CRS"/>
                             </mask>
                         </variation>
                     </view>
@@ -269,6 +307,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="collectionView" destination="g7t-W0-uuB" id="JGW-gz-ffd"/>
+                        <outlet property="indicator" destination="8zh-6i-hSq" id="YnW-cI-9KH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eq3-5w-hYq" userLabel="First Responder" sceneMemberID="firstResponder"/>

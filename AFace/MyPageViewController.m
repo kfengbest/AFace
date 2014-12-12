@@ -17,6 +17,7 @@
 @interface MyPageViewController ()
 {
     NSMutableArray* mImages;
+
 }
 
 @end
@@ -26,6 +27,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+    self.indicator.backgroundColor = [UIColor grayColor];
+    self.indicator.alpha = 0.9;
+    self.indicator.layer.cornerRadius = 6;
+    self.indicator.layer.masksToBounds = YES;
+    self.indicator.hidesWhenStopped = YES;
     
     mImages = [[NSMutableArray alloc] init];
 
@@ -104,6 +112,8 @@
          NSString * imageName = [NSString stringWithFormat:@"%@.%@", dateString, @"jpg"];
       //  [self saveImage:image withFileName:dateString ofType:@"jpg" inDirectory:documentsDirectory];
         
+        [self.indicator startAnimating];
+        
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         NSDictionary *parameters = @{@"Content-Type": @"multipart/form-data"};
         NSString* token = [[SharedData theInstance] getToken];
@@ -113,12 +123,15 @@
     
                 } success:^(AFHTTPRequestOperation *operation, id responseObject) {
                     NSLog(@"Success: %@", responseObject);
+                    
+                    [self.indicator stopAnimating];
                     NSDictionary* dic = responseObject;
                     NSString* imageUrl = [dic objectForKey:@"url"];
                     [mImages addObject:imageUrl];
                     [self.collectionView reloadData];
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                     NSLog(@"Error: %@", error);
+                    [self.indicator stopAnimating];
                 }];
 
     }

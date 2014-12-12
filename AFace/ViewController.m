@@ -28,6 +28,16 @@
 
     self.userName.delegate = self;
     self.userPsw.delegate = self;
+    
+    //self.indicator.hidden = TRUE;
+    [self.indicator setFrame:CGRectMake(0, 0, 150, 150)];
+    self.indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+    [self.indicator setCenter:CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2)];
+    self.indicator.backgroundColor = [UIColor grayColor];
+    self.indicator.alpha = 0.9;
+    self.indicator.layer.cornerRadius = 6;
+    self.indicator.layer.masksToBounds = YES;
+    self.indicator.hidesWhenStopped = TRUE;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,6 +49,8 @@
     NSString* name = self.userName.text;
     NSString* psw = self.userPsw.text;
     
+    [self.indicator startAnimating];
+
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSMutableDictionary* parameters=[[NSMutableDictionary alloc] init];
     [parameters setObject: name forKey:@"username"];
@@ -47,6 +59,8 @@
     [manager POST:@"http://10.148.252.24/rest-userLogin/" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
 
+        [self.indicator stopAnimating];
+        
         NSDictionary* dic = responseObject;
         BOOL status = (BOOL)[dic objectForKey:@"status"];
         if (status != nil && status == FALSE) {
@@ -60,6 +74,8 @@
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
+        [self.indicator stopAnimating];
+        
     }];
     
 }
@@ -122,7 +138,8 @@
         UIImage *newImage = [self imageWithImage:image scaledToSize:CGSizeMake(320, 480)];
 
         self.erroMsg.text = @"Searching your face for login...";
-        
+        [self.indicator startAnimating];
+
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         NSDictionary *parameters = @{@"Content-Type": @"multipart/form-data"};
         NSString* strUrl = @"http://10.148.252.24/rest-faceLogin/";
@@ -131,7 +148,8 @@
             
         } success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"Success: %@", responseObject);
-            
+            [self.indicator stopAnimating];
+
             NSDictionary* dic = responseObject;
             BOOL status = (BOOL)[dic objectForKey:@"status"];
             if (status != nil && status == FALSE) {
@@ -147,6 +165,8 @@
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Error: %@", error);
+            [self.indicator stopAnimating];
+
         }];
         
 

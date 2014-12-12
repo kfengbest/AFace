@@ -14,5 +14,6 @@
                                                     UIImagePickerControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
 
 @end
