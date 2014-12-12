@@ -160,7 +160,7 @@
                 
             }else{
                 float fConfidence = [[dic objectForKey:@"confidence"] floatValue];
-                if (fConfidence > 20.0) {
+                if (fConfidence > 15.0) {
                     self.erroMsg.text = @"";
                     
                     self.userToken = [dic objectForKey:@"token"];

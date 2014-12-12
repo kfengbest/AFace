@@ -175,7 +175,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="149" height="168"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="149" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VZV-7T-kL2">
@@ -183,6 +183,9 @@
                                                     <state key="normal" image="add.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="20" y="29" width="109" height="109"/>
+                                                    </variation>
                                                     <connections>
                                                         <action selector="addFace:" destination="rjs-cn-JJe" eventType="touchUpInside" id="bQb-th-43E"/>
                                                     </connections>
@@ -194,6 +197,7 @@
                                             <constraint firstItem="VZV-7T-kL2" firstAttribute="leading" secondItem="GTo-ue-oSx" secondAttribute="leadingMargin" constant="18" id="UTU-JQ-7ew"/>
                                             <constraint firstItem="VZV-7T-kL2" firstAttribute="top" secondItem="GTo-ue-oSx" secondAttribute="topMargin" constant="23" id="eMm-tT-D0C"/>
                                         </constraints>
+                                        <size key="customSize" width="149" height="200"/>
                                         <variation key="default">
                                             <mask key="subviews">
                                                 <exclude reference="VZV-7T-kL2"/>
@@ -217,7 +221,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="149" height="168"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="B0y-ZZ-qwA">
@@ -232,6 +236,7 @@
                                             <constraint firstItem="B0y-ZZ-qwA" firstAttribute="top" secondItem="bgB-2m-jVy" secondAttribute="top" id="o4f-Jx-HAI"/>
                                             <constraint firstAttribute="bottom" secondItem="B0y-ZZ-qwA" secondAttribute="bottom" id="tca-Ib-G36"/>
                                         </constraints>
+                                        <size key="customSize" width="150" height="200"/>
                                         <variation key="default">
                                             <mask key="subviews">
                                                 <exclude reference="B0y-ZZ-qwA"/>
@@ -312,7 +317,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eq3-5w-hYq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1785" y="515.25"/>
+            <point key="canvasLocation" x="1785" y="526.875"/>
         </scene>
         <!--Logout-->
         <scene sceneID="fhQ-72-o08">
