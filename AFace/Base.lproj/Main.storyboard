@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -14,7 +15,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LPj-3L-nw9">
@@ -127,7 +128,7 @@
                         <viewControllerLayoutGuide type="bottom" id="zao-SO-kjr"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="YyE-2g-zRp">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="g7t-W0-uuB">
@@ -152,9 +153,6 @@
                                                     <state key="normal" image="add.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="20" y="29" width="109" height="109"/>
-                                                    </variation>
                                                     <connections>
                                                         <action selector="addFace:" destination="rjs-cn-JJe" eventType="touchUpInside" id="bQb-th-43E"/>
                                                     </connections>
@@ -277,7 +275,7 @@
             </objects>
             <point key="canvasLocation" x="1785" y="515.25"/>
         </scene>
-        <!--Item-->
+        <!--Logout-->
         <scene sceneID="fhQ-72-o08">
             <objects>
                 <viewController id="xib-QG-bHe" customClass="LogoutViewController" sceneMemberID="viewController">
@@ -286,6 +284,7 @@
                         <viewControllerLayoutGuide type="bottom" id="npi-u4-XJy"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="zWj-kh-k1B">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ve-22-48t">
@@ -313,7 +312,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="zs0-Lc-KA3"/>
+                    <tabBarItem key="tabBarItem" title="Logout" id="zs0-Lc-KA3"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="LogoutSegue" id="YVT-uk-qvZ"/>
@@ -332,7 +331,7 @@
                         <viewControllerLayoutGuide type="bottom" id="oFz-81-wye"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="2kq-Oh-xKK">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cq2-L2-i7W">
