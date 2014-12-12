@@ -300,7 +300,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My" id="7o4-ER-sNL"/>
+                    <tabBarItem key="tabBarItem" title="My" image="my_2.png" id="7o4-ER-sNL"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="collectionView" destination="g7t-W0-uuB" id="JGW-gz-ffd"/>
@@ -348,7 +348,9 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Logout" id="zs0-Lc-KA3"/>
+                    <tabBarItem key="tabBarItem" title="Logout" image="logout_2.png" id="zs0-Lc-KA3">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="LogoutSegue" id="YVT-uk-qvZ"/>
@@ -395,7 +397,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="F0J-tX-OiF"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="home_2.png" id="F0J-tX-OiF"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="lblUserName" destination="cq2-L2-i7W" id="jwy-ww-oE5"/>
@@ -430,5 +432,8 @@
     <resources>
         <image name="add.png" width="109" height="109"/>
         <image name="face-login-btn.png" width="150" height="48"/>
+        <image name="home_2.png" width="44" height="44"/>
+        <image name="logout_2.png" width="44" height="44"/>
+        <image name="my_2.png" width="44" height="44"/>
     </resources>
 </document>
