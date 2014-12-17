@@ -138,7 +138,7 @@
         [self saveImage:image withFileName:dateString ofType:@"jpg" inDirectory:documentsDirectory];
         self.photoName = [NSString stringWithFormat:@"%@.%@", dateString, @"jpg"];
         
-        UIImage *newImage = [self scaleImage:image scaledToSize:0.6];
+        UIImage *newImage = [self scaleImage:image scaledToSize:0.5];
 
         self.erroMsg.text = @"Searching your face...";
         [self.indicator startAnimating];
@@ -147,7 +147,7 @@
         NSDictionary *parameters = @{@"Content-Type": @"multipart/form-data"};
         NSString* strUrl = @"http://10.148.252.24/rest-faceLogin/";
         [manager POST: strUrl parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-            [formData appendPartWithFileData:UIImageJPEGRepresentation(newImage, 1.0) name:@"file" fileName:self.photoName mimeType:@"image/jpeg"];
+            [formData appendPartWithFileData:UIImageJPEGRepresentation(newImage, 0.5) name:@"file" fileName:self.photoName mimeType:@"image/jpeg"];
             
         } success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"Success: %@", responseObject);

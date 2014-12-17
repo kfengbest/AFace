@@ -112,6 +112,8 @@
          NSString * imageName = [NSString stringWithFormat:@"%@.%@", dateString, @"jpg"];
       //  [self saveImage:image withFileName:dateString ofType:@"jpg" inDirectory:documentsDirectory];
         
+        UIImage *newImage = [self scaleImage:image scaledToSize:0.5];
+
         [self.indicator startAnimating];
         
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -119,7 +121,7 @@
         NSString* token = [[SharedData theInstance] getToken];
         NSString* strUrl = [NSString stringWithFormat:@"http://10.148.252.24:80/rest-bindFace/?token=%@", token];
                 [manager POST: strUrl parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-                    [formData appendPartWithFileData:UIImageJPEGRepresentation(image, 1.0) name:@"file" fileName: imageName mimeType:@"image/jpeg"];
+                    [formData appendPartWithFileData:UIImageJPEGRepresentation(newImage, 0.5) name:@"file" fileName: imageName mimeType:@"image/jpeg"];
     
                 } success:^(AFHTTPRequestOperation *operation, id responseObject) {
                     NSLog(@"Success: %@", responseObject);
@@ -210,5 +212,20 @@
     return nil;
 }
 
+- (UIImage *)scaleImage:(UIImage *)image scaledToSize:(float)scaleFactor {
+    //UIGraphicsBeginImageContext(newSize);
+    // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
+    // Pass 1.0 to force exact pixel size.
+    
+    float w =image.size.width;
+    float h = image.size.height;
+    CGSize newSize = CGSizeMake( w * scaleFactor, h * scaleFactor);
+    
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
 
 @end
