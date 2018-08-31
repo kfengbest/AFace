@@ -138,7 +138,7 @@
         [self saveImage:image withFileName:dateString ofType:@"jpg" inDirectory:documentsDirectory];
         self.photoName = [NSString stringWithFormat:@"%@.%@", dateString, @"jpg"];
         
-        UIImage *newImage = [self scaleImage:image scaledToSize:0.5];
+        UIImage *newImage = [self scaleImage:image scaledToSize:0.8];
 
         self.erroMsg.text = @"Searching your face...";
         [self.indicator startAnimating];
@@ -147,7 +147,7 @@
         NSDictionary *parameters = @{@"Content-Type": @"multipart/form-data"};
         NSString* strUrl = @"http://10.148.252.24/rest-faceLogin/";
         [manager POST: strUrl parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-            [formData appendPartWithFileData:UIImageJPEGRepresentation(newImage, 0.5) name:@"file" fileName:self.photoName mimeType:@"image/jpeg"];
+            [formData appendPartWithFileData:UIImageJPEGRepresentation(newImage, 0.6) name:@"file" fileName:self.photoName mimeType:@"image/jpeg"];
             
         } success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"Success: %@", responseObject);
@@ -156,7 +156,7 @@
             NSDictionary* dic = responseObject;
             BOOL status = [[dic objectForKey:@"status"] boolValue];
             if (status == 0) {
-                self.erroMsg.text = @"Not found your face. Take photo again.";
+                self.erroMsg.text = @"Face not matched. Please take photo again.";
                 
             }else{
                 float fConfidence = [[dic objectForKey:@"confidence"] floatValue];
@@ -167,7 +167,7 @@
                     [[SharedData theInstance] login:dic];
                     [self performSegueWithIdentifier:@"LoginSucceedSegue" sender:self];
                 }else{
-                    self.erroMsg.text = @"Not found your face. Take photo again.";
+                    self.erroMsg.text = @"Face not matched. Please take photo again.";
                 }
 
             }

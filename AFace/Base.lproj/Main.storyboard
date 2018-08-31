@@ -7,6 +7,23 @@
     </dependencies>
     <scenes>
         <!--View Controller-->
+        <scene sceneID="B2k-ML-HX1">
+            <objects>
+                <viewController id="frc-Qo-cHw" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KiZ-3e-SEf"/>
+                        <viewControllerLayoutGuide type="bottom" id="ftY-4k-G0X"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EVT-Po-W0H">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lC9-Z3-X2O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-387" y="396"/>
+        </scene>
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
@@ -183,9 +200,6 @@
                                                     <state key="normal" image="add.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="20" y="29" width="109" height="109"/>
-                                                    </variation>
                                                     <connections>
                                                         <action selector="addFace:" destination="rjs-cn-JJe" eventType="touchUpInside" id="bQb-th-43E"/>
                                                     </connections>
